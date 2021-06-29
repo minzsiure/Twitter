@@ -7,9 +7,14 @@
 //
 
 #import "ComposeViewController.h"
+#import "APIManager.h"
+
+
 
 @interface ComposeViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextView *tweetTextView;
+@property (weak, nonatomic) IBOutlet UIImageView *composeProfile;
 
 @end
 
@@ -20,6 +25,21 @@
 }
 
 - (IBAction)tweetAction:(id)sender {
+    NSString *text = self.tweetTextView.text;
+    [[APIManager shared] postStatusWithText:text completion:^(Tweet * tweet, NSError * error){
+        if (tweet){
+            
+            NSLog(@"Tweet success");
+            // make viewController dismiss
+            [self.delegate didTweet:tweet];
+            
+        }
+        
+        else{
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 - (void)viewDidLoad {

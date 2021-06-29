@@ -14,8 +14,9 @@
 #import "TweetCell.h"
 #import "User.h"
 #import "UIImageView+AFNetworking.h"
+#import "ComposeViewController.h"
 
-@interface TimelineViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *logOut;
 @property (strong, nonatomic) NSMutableArray *arrayofTweets;
 @property (weak, nonatomic) IBOutlet UITableView *tweetTableView;
@@ -86,15 +87,18 @@
 
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    UINavigationController *navigationController = [segue destinationViewController];
+    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+    composeController.delegate = self;
 }
-*/
+
 
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -109,6 +113,7 @@
     cell.userName.text = tweetObj.user.screenName;
     cell.dateLabel.text = tweetObj.createdAtString;
     cell.tweetLabel.text = tweetObj.text;
+    cell.tweet = tweetObj;
     
     NSString* replyString = [NSString stringWithFormat:@"%d", tweetObj.replyCount];
     NSString* retweetString = [NSString stringWithFormat:@"%d", tweetObj.retweetCount];
@@ -124,15 +129,7 @@
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     cell.profileImage.image = nil;
     [cell.profileImage setImageWithURL:url];
-    
-//    profileImage;
 
-
-
-
-//    reweetLabel;
-//    likeLabel;
-//    messageLabel;
     
 
     
@@ -143,6 +140,10 @@
     return self.arrayofTweets.count;
 }
 
-
+- (void) didTweet:(Tweet *)tweet{
+    //add the new tweet to the tweets array and call
+    [self.arrayofTweets insertObject:tweet atIndex:0];
+    [self.tweetTableView  reloadData];
+}
 
 @end
