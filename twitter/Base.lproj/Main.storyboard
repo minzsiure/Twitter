@@ -149,6 +149,9 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IRM-8F-8lf">
                                                             <rect key="frame" x="0.0" y="6.5" width="30" height="30.5"/>
                                                             <state key="normal" image="retweet-icon"/>
+                                                            <connections>
+                                                                <action selector="didTapRetweet:" destination="hzL-me-wfs" eventType="touchUpInside" id="3mm-ra-IrZ"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <constraints>
@@ -187,8 +190,8 @@
                                                         <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="nSD-Ho-GtT" secondAttribute="trailing" constant="25" id="nAF-zE-CAp"/>
                                                     </constraints>
                                                 </view>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GNf-km-djy">
-                                                    <rect key="frame" x="10" y="15" width="60" height="56"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GNf-km-djy">
+                                                    <rect key="frame" x="10" y="15" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="AYx-LR-pPS"/>
                                                         <constraint firstAttribute="height" constant="60" id="VLQ-Me-obl"/>

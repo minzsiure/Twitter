@@ -88,6 +88,48 @@
     [self refreshData];
 }
 
+- (IBAction)didTapRetweet:(id)sender {
+    UIButton *btn = (UIButton *)sender;
+    if (!self.tweet.retweeted){
+        // TODO: Update the local tweet model
+        self.tweet.retweeted = YES;
+        self.tweet.retweetCount += 1;
+
+        // TODO: Update cell UI
+        [btn setImage:[UIImage imageNamed:@"retweet-icon-green.png"] forState:UIControlStateNormal];
+        
+        
+    
+        // TODO: Send a POST request to the POST favorites/create endpoint
+        [[APIManager shared] retweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if(error){
+             NSLog(@"Error retweeting tweet: %@", error.localizedDescription);
+            }
+            else{
+                NSLog(@"Successfully retweeted the following Tweet: %@", tweet.text);
+            }
+        }];
+        [self refreshData];
+    }
+    else{
+        self.tweet.retweeted = NO;
+        self.tweet.retweetCount -= 1;
+        [btn setImage:[UIImage imageNamed:@"retweet-icon.png"] forState:UIControlStateNormal];
+        
+    }
+    
+    // TODO: Send a POST request to the POST favorites/create endpoint
+    [[APIManager shared] unretweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+        if(error){
+         NSLog(@"Error unfretweeting tweet: %@", error.localizedDescription);
+        }
+        else{
+            NSLog(@"Successfully unretweeted the following Tweet: %@", tweet.text);
+        }
+    }];
+    [self refreshData];
+}
+
 
 
 @end
