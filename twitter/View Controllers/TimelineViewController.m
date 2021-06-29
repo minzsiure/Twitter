@@ -10,10 +10,15 @@
 #import "APIManager.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "Tweet.h"
+#import "TweetCell.h"
+#import "User.h"
+#import "UIImageView+AFNetworking.h"
 
-@interface TimelineViewController ()
+@interface TimelineViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *logOut;
-
+@property (strong, nonatomic) NSMutableArray *arrayofTweets;
+@property (weak, nonatomic) IBOutlet UITableView *tweetTableView;
 
 @end
 
@@ -22,11 +27,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.tweetTableView.dataSource = self;
+    self.tweetTableView.delegate = self;
     
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
+//            for (Tweet *tweet in tweets) {
+//                            [self.arrayofTweets addObject:tweet];
+//                            NSLog(@"%@", tweet.text);
+//                        }
+            self.arrayofTweets = tweets;
+            [self.tweetTableView reloadData];
+            
 //            for (NSDictionary *dictionary in tweets) {
 //                NSString *text = dictionary[@"text"];
 //                NSLog(@"%@", text);
@@ -60,6 +74,54 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    //call reuseable cells
+    
+    TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
+    Tweet *tweetObj = self.arrayofTweets[indexPath.row];
+    // make right movie associates with right row
+    //NSDictionary *movie = self.filteredMovies[indexPath.row];
+    
+    cell.fullName.text = tweetObj.user.name;
+    cell.userName.text = tweetObj.user.screenName;
+    cell.dateLabel.text = tweetObj.createdAtString;
+    cell.tweetLabel.text = tweetObj.text;
+    
+    NSString* replyString = [NSString stringWithFormat:@"%d", tweetObj.replyCount];
+    NSString* retweetString = [NSString stringWithFormat:@"%d", tweetObj.retweetCount];
+    NSString* likeString = [NSString stringWithFormat:@"%d", tweetObj.favoriteCount];
+
+    
+    cell.replyLabel.text = replyString;
+    cell.retweetLabel.text = retweetString;
+    cell.likeLabel.text = likeString;
+    
+    NSString *URLString = tweetObj.user.profilePicture;
+    NSURL *url = [NSURL URLWithString:URLString];
+    NSData *urlData = [NSData dataWithContentsOfURL:url];
+    cell.profileImage.image = nil;
+    [cell.profileImage setImageWithURL:url];
+    
+//    profileImage;
+
+
+
+
+//    reweetLabel;
+//    likeLabel;
+//    messageLabel;
+    
+
+    
+    return cell;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.arrayofTweets.count;
+}
+
 
 
 @end
