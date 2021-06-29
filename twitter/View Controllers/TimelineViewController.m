@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *logOut;
 @property (strong, nonatomic) NSMutableArray *arrayofTweets;
 @property (weak, nonatomic) IBOutlet UITableView *tweetTableView;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -30,6 +31,20 @@
     self.tweetTableView.dataSource = self;
     self.tweetTableView.delegate = self;
     
+    [self loadTweet];
+    
+    //init a UIRefreshControl
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    //addTarget, the object u wanna call; action, functions u wanna call
+    [self.refreshControl addTarget:self action:@selector(loadTweet) forControlEvents:UIControlEventValueChanged];
+    [self.tweetTableView insertSubview:self.refreshControl atIndex:0];
+    [self.tweetTableView addSubview:self.refreshControl]; //addSubview is a part of UIView, can be added anywhere
+    
+
+
+}
+
+- (void) loadTweet{
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
@@ -38,9 +53,13 @@
 //                            [self.arrayofTweets addObject:tweet];
 //                            NSLog(@"%@", tweet.text);
 //                        }
-            self.arrayofTweets = tweets;
+            
+            self.arrayofTweets = tweets; //ignore warning
             [self.tweetTableView reloadData];
             
+            [self.refreshControl endRefreshing];
+            
+
 //            for (NSDictionary *dictionary in tweets) {
 //                NSString *text = dictionary[@"text"];
 //                NSLog(@"%@", text);
@@ -63,6 +82,8 @@
     appDelegate.window.rootViewController = loginViewController;
     [[APIManager shared] logout];
 }
+
+
 
 
 /*
