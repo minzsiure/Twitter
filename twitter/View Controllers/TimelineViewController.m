@@ -15,6 +15,7 @@
 #import "User.h"
 #import "UIImageView+AFNetworking.h"
 #import "ComposeViewController.h"
+#import "DetailViewController.h"
 
 @interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *logOut;
@@ -50,21 +51,13 @@
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
-//            for (Tweet *tweet in tweets) {
-//                            [self.arrayofTweets addObject:tweet];
-//                            NSLog(@"%@", tweet.text);
-//                        }
             
             self.arrayofTweets = tweets; //ignore warning
             [self.tweetTableView reloadData];
             
             [self.refreshControl endRefreshing];
-            
 
-//            for (NSDictionary *dictionary in tweets) {
-//                NSString *text = dictionary[@"text"];
-//                NSLog(@"%@", text);
-//            }
+
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
@@ -94,9 +87,19 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    UINavigationController *navigationController = [segue destinationViewController];
-    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
-    composeController.delegate = self;
+    if ([segue.identifier isEqual:@"composeTweet"]){
+        UINavigationController *navigationController = [segue destinationViewController];
+        ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+        composeController.delegate = self;
+    }
+    else{
+        // tweet detial page
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tweetTableView indexPathForCell:tappedCell];
+        Tweet *tweetObj = self.arrayofTweets[indexPath.row];
+        DetailViewController *detailViewController = [segue destinationViewController];
+        detailViewController.tweet = tweetObj;
+    }
 }
 
 
@@ -106,8 +109,6 @@
     
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     Tweet *tweetObj = self.arrayofTweets[indexPath.row];
-    // make right movie associates with right row
-    //NSDictionary *movie = self.filteredMovies[indexPath.row];
     
     cell.fullName.text = tweetObj.user.name;
     NSString *userName = tweetObj.user.screenName;
@@ -134,10 +135,7 @@
     [cell.profileImage setImageWithURL:url];
     cell.profileImage.layer.cornerRadius = 30;
     cell.profileImage.clipsToBounds = YES;
-
-    
-
-    
+   
     return cell;
 }
 
@@ -149,6 +147,16 @@
     //add the new tweet to the tweets array and call
     [self.arrayofTweets insertObject:tweet atIndex:0];
     [self.tweetTableView  reloadData];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewAutomaticDimension;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewAutomaticDimension;
 }
 
 @end

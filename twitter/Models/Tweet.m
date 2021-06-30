@@ -29,7 +29,7 @@
             dictionary = originalTweet;
         }
         self.idStr = dictionary[@"id_str"];
-        self.text = dictionary[@"text"];
+        self.text = dictionary[@"full_text"];
         self.favoriteCount = [dictionary[@"favorite_count"] intValue];
         self.favorited = [dictionary[@"favorited"] boolValue];
         self.retweetCount = [dictionary[@"retweet_count"] intValue];
@@ -50,10 +50,11 @@
         
         // Convert String to Date
         NSDate *date = [formatter dateFromString:createdAtOriginalString];
-        
+        self.fullDate = [formatter stringFromDate:date];
         
         // Convert Date to String
         self.createdAtString = date.shortTimeAgoSinceNow;
+        
     }
     return self;
 }
