@@ -110,7 +110,10 @@
     //NSDictionary *movie = self.filteredMovies[indexPath.row];
     
     cell.fullName.text = tweetObj.user.name;
-    cell.userName.text = tweetObj.user.screenName;
+    NSString *userName = tweetObj.user.screenName;
+    NSString *userString = [@"@" stringByAppendingString:userName];
+    cell.userName.text = userString;
+    
     cell.dateLabel.text = tweetObj.createdAtString;
     cell.tweetLabel.text = tweetObj.text;
     cell.tweet = tweetObj;
@@ -129,6 +132,8 @@
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     cell.profileImage.image = nil;
     [cell.profileImage setImageWithURL:url];
+    cell.profileImage.layer.cornerRadius = 30;
+    cell.profileImage.clipsToBounds = YES;
 
     
 
