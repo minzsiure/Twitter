@@ -24,6 +24,7 @@
 }
 
 - (void) refreshData{
+
     User *user =self.tweet.user;
     self.fullName.text = user.name;
     self.userName.text = user.screenName;
