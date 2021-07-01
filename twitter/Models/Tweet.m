@@ -50,6 +50,10 @@
         
         // Convert String to Date
         NSDate *date = [formatter dateFromString:createdAtOriginalString];
+        
+        // Configure output format
+        formatter.dateStyle = NSDateFormatterShortStyle;
+        formatter.timeStyle = NSDateFormatterShortStyle;
         self.fullDate = [formatter stringFromDate:date];
         
         // Convert Date to String
