@@ -55,8 +55,6 @@
     UIImage *image = [UIImage imageWithData:urlData];
     [self.profileImage setImage:image];
     
-    [self.profileImage addGestureRecognizer:self.profileTapGestureRecognizer];
-    [self.profileImage setUserInteractionEnabled:YES];
 
 }
 
