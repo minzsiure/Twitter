@@ -293,10 +293,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JYE-iD-kaq">
-                                <rect key="frame" x="0.0" y="88" width="62.5" height="725"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Yh-9g-33I">
-                                        <rect key="frame" x="0.0" y="0.0" width="62.5" height="725"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d5O-Bj-ayt">
                                                 <rect key="frame" x="10" y="10" width="60" height="60"/>
@@ -350,7 +350,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPR-F3-jwb">
-                                                <rect key="frame" x="10" y="201" width="42.5" height="21"/>
+                                                <rect key="frame" x="10" y="201" width="394" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -663,10 +663,10 @@
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uvW-dk-bDZ">
-                                        <rect key="frame" x="0.0" y="280" width="414" height="550"/>
+                                        <rect key="frame" x="0.0" y="280" width="414" height="565"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetCell" id="AeO-BK-Zq9" customClass="TweetCell">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyCell" id="AeO-BK-Zq9" customClass="MyCell">
                                                 <rect key="frame" x="0.0" y="24.5" width="414" height="169.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AeO-BK-Zq9" id="bpm-9r-heq">
@@ -822,15 +822,16 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
-                                                    <outlet property="dateLabel" destination="GPa-td-GQn" id="f4L-CV-l2Z"/>
-                                                    <outlet property="fullName" destination="Cwl-Qe-vKw" id="9qm-bK-54f"/>
-                                                    <outlet property="likeLabel" destination="jfh-Ti-Hxd" id="YbL-qe-xIB"/>
-                                                    <outlet property="messageLabel" destination="Atv-Dz-eRF" id="D9p-Zp-qdd"/>
-                                                    <outlet property="profileImage" destination="Q5l-MB-arr" id="YKl-OJ-GfG"/>
-                                                    <outlet property="replyLabel" destination="vmo-IU-ywO" id="5sY-Ta-QQz"/>
-                                                    <outlet property="retweetLabel" destination="srd-RK-I4a" id="fxW-mI-uOg"/>
-                                                    <outlet property="tweetLabel" destination="d5r-nG-dk8" id="Fe6-3X-K6X"/>
-                                                    <outlet property="userName" destination="xJP-WX-MEK" id="uDB-fT-CdX"/>
+                                                    <outlet property="dateLabel" destination="GPa-td-GQn" id="lve-TR-yzg"/>
+                                                    <outlet property="likeButton" destination="ls3-vf-zfJ" id="F4I-1u-pQb"/>
+                                                    <outlet property="likeCount" destination="jfh-Ti-Hxd" id="bdc-EA-wPC"/>
+                                                    <outlet property="nameLabel" destination="Cwl-Qe-vKw" id="B4v-Dp-1f0"/>
+                                                    <outlet property="profileLabel" destination="Q5l-MB-arr" id="uVz-tp-btP"/>
+                                                    <outlet property="replyCount" destination="vmo-IU-ywO" id="YhW-Yw-5ba"/>
+                                                    <outlet property="retweetButton" destination="iLv-qN-8YU" id="b9g-F0-AHO"/>
+                                                    <outlet property="retweetCount" destination="srd-RK-I4a" id="0Ke-Td-Zgh"/>
+                                                    <outlet property="tweetLabel" destination="d5r-nG-dk8" id="JzF-cr-Ear"/>
+                                                    <outlet property="userName" destination="xJP-WX-MEK" id="bj2-ks-Bxv"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -866,6 +867,7 @@
                         <outlet property="followerNumber" destination="4TN-lt-aF9" id="9It-J1-dzD"/>
                         <outlet property="followingNumber" destination="PAF-pZ-AMF" id="jP4-45-7qP"/>
                         <outlet property="fullName" destination="pJ7-0b-RBa" id="4xT-EW-eZu"/>
+                        <outlet property="myTableView" destination="uvW-dk-bDZ" id="m9z-qR-cON"/>
                         <outlet property="profileImage" destination="c9B-Xg-gg6" id="vfh-33-WJU"/>
                         <outlet property="tweetNumber" destination="Kjq-Pc-Bav" id="PwP-MO-wik"/>
                         <outlet property="userName" destination="uUZ-HV-iM8" id="qMr-SK-lJm"/>

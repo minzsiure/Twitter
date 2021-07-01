@@ -17,8 +17,6 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.profileTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapUserProfile:)];
-    
 }
 
 - (void) didTapUserProfile:(UITapGestureRecognizer *)sender{

@@ -24,6 +24,7 @@
 		8A06BDB0268BB12600A13382 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A06BDAF268BB12600A13382 /* ComposeViewController.m */; };
 		8A06BDBA268D0F7900A13382 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A06BDB9268D0F7900A13382 /* DetailViewController.m */; };
 		8A06BE00268E5E1600A13382 /* MyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A06BDFF268E5E1600A13382 /* MyProfileViewController.m */; };
+		8A06BE03268E770300A13382 /* MyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A06BE02268E770300A13382 /* MyCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,8 @@
 		8A06BDB9268D0F7900A13382 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		8A06BDFE268E5E1600A13382 /* MyProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyProfileViewController.h; sourceTree = "<group>"; };
 		8A06BDFF268E5E1600A13382 /* MyProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyProfileViewController.m; sourceTree = "<group>"; };
+		8A06BE01268E770300A13382 /* MyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCell.h; sourceTree = "<group>"; };
+		8A06BE02268E770300A13382 /* MyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +148,8 @@
 			children = (
 				8A06BDAB268A82A300A13382 /* TweetCell.h */,
 				8A06BDAC268A82A300A13382 /* TweetCell.m */,
+				8A06BE01268E770300A13382 /* MyCell.h */,
+				8A06BE02268E770300A13382 /* MyCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -291,6 +296,7 @@
 				8A06BDA4268A721900A13382 /* User.m in Sources */,
 				8A06BDB0268BB12600A13382 /* ComposeViewController.m in Sources */,
 				6AD278E820BC4B970085BC29 /* main.m in Sources */,
+				8A06BE03268E770300A13382 /* MyCell.m in Sources */,
 				8A06BDA7268A748400A13382 /* Tweet.m in Sources */,
 				6AD2790620BCC0380085BC29 /* LoginViewController.m in Sources */,
 				8A06BDBA268D0F7900A13382 /* DetailViewController.m in Sources */,
