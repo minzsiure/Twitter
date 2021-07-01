@@ -130,4 +130,15 @@ static NSString * const baseURLString = @"https://api.twitter.com";
     }];
 }
 
+- (void)verifyCredentials:(void (^)(NSDictionary *, NSError *))completion{
+    NSString *urlString = @"1.1/account/verify_credentials.json";
+    NSDictionary *parameters = @{};
+    [self GET:urlString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable userDictionary) {
+            completion(userDictionary, nil);
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            completion(nil, error);
+    }];
+}
+
+
 @end

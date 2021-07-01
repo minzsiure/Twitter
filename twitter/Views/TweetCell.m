@@ -9,12 +9,23 @@
 #import "TweetCell.h"
 #import "APIManager.h"
 #import "DateTools.h"
+#import "Tweet.h"
+#import "User.h"
 
 @implementation TweetCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.profileTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapUserProfile:)];
+    
+}
+
+- (void) didTapUserProfile:(UITapGestureRecognizer *)sender{
+    //TODO: Call method delegate
+    [self.delegate tweetCell:self didTap:self.tweet.user];
+    // implement later
+    //[self performSegueWithIdentifier:@"profileSegue" sender:user];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -45,8 +56,12 @@
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     UIImage *image = [UIImage imageWithData:urlData];
     [self.profileImage setImage:image];
+    
+    [self.profileImage addGestureRecognizer:self.profileTapGestureRecognizer];
+    [self.profileImage setUserInteractionEnabled:YES];
 
 }
+
 
 - (IBAction)didTapLike:(id)sender {
     UIButton *btn = (UIButton *)sender;

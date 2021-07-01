@@ -46,6 +46,10 @@
 
 }
 
+- (void)tweetCell:(TweetCell *)tweetCell didTap:(User *)user{
+    // TODO: Perform segue to profile view controller
+}
+
 - (void) loadTweet{
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
@@ -135,6 +139,8 @@
     [cell.profileImage setImageWithURL:url];
     cell.profileImage.layer.cornerRadius = 30;
     cell.profileImage.clipsToBounds = YES;
+    
+    cell.delegate = self;
    
     return cell;
 }
