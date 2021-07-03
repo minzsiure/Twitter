@@ -45,7 +45,7 @@ The following **optional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://github.com/minzsiure/Twitter/blob/main/Kapture%202021-07-01%20at%2019.54.57.gif?raw=true' title='Video Walkthrough' width='500' alt='Video Walkthrough' />
+<img src='https://github.com/minzsiure/Twitter/blob/main/twitter_new.gif?raw=true' title='Video Walkthrough' width='500' alt='Video Walkthrough' />
 
 GIF created with [Kap](https://getkap.co/).
 
