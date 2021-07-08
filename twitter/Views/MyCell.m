@@ -16,15 +16,11 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-    
 }
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 - (void) refreshData{
@@ -43,7 +39,6 @@
     self.retweetCount.text = retweetString;
     self.likeCount.text = likeString;
     
-    //profile img
     NSString *URLString = self.tweet.user.profilePicture;
     NSURL *url = [NSURL URLWithString:URLString];
     NSData *urlData = [NSData dataWithContentsOfURL:url];

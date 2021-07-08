@@ -64,7 +64,6 @@
 }
 
 + (NSMutableArray *)tweetsWithArray:(NSArray *)dictionaries{
-    // created an array
     NSMutableArray *tweets = [NSMutableArray array];
         
     // a factory method that returns Tweets when initialized with an array of Tweet Dictionaries.

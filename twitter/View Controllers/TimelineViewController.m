@@ -35,12 +35,10 @@
     
     [self loadTweet];
     
-    //init a UIRefreshControl
     self.refreshControl = [[UIRefreshControl alloc] init];
-    //addTarget, the object u wanna call; action, functions u wanna call
     [self.refreshControl addTarget:self action:@selector(loadTweet) forControlEvents:UIControlEventValueChanged];
     [self.tweetTableView insertSubview:self.refreshControl atIndex:0];
-    [self.tweetTableView addSubview:self.refreshControl]; //addSubview is a part of UIView, can be added anywhere
+    [self.tweetTableView addSubview:self.refreshControl]; 
     
 
 
@@ -51,7 +49,6 @@
 }
 
 - (void) loadTweet{
-    // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
@@ -70,7 +67,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 - (IBAction)logOutAction:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -87,10 +83,7 @@
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     if ([segue.identifier isEqual:@"composeTweet"]){
         UINavigationController *navigationController = [segue destinationViewController];
         ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
@@ -109,7 +102,6 @@
 
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    //call reuseable cells
     
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     Tweet *tweetObj = self.arrayofTweets[indexPath.row];
@@ -134,7 +126,6 @@
     
     NSString *URLString = tweetObj.user.profilePicture;
     NSURL *url = [NSURL URLWithString:URLString];
-    NSData *urlData = [NSData dataWithContentsOfURL:url];
     cell.profileImage.image = nil;
     [cell.profileImage setImageWithURL:url];
     cell.profileImage.layer.cornerRadius = 30;

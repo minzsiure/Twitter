@@ -30,7 +30,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     [self loadData];
 }
 
@@ -68,10 +67,6 @@
             self.tweetNumber.text = [NSString stringWithFormat:@"%@", info[@"statuses_count"]];
             self.followingNumber.text = [NSString stringWithFormat:@"%@", info[@"friends_count"]];
             self.followerNumber.text = [NSString stringWithFormat:@"%@", info[@"followers_count"]];
-            
-
-  
-
             
 
         } else {
@@ -114,7 +109,6 @@
         
         NSString *URLString = tweetObj.user.profilePicture;
         NSURL *url = [NSURL URLWithString:URLString];
-        NSData *urlData = [NSData dataWithContentsOfURL:url];
         cell.profileLabel.image = nil;
         [cell.profileLabel setImageWithURL:url];
         cell.profileLabel.layer.cornerRadius = 30;

@@ -10,7 +10,6 @@
 #import "Tweet.h"
 
 NS_ASSUME_NONNULL_BEGIN
-//define a protocal before interface
 @protocol ComposeViewControllerDelegate
 - (void)didTweet:(Tweet *)tweet;
 @end
